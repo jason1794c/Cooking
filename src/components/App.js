@@ -28,7 +28,8 @@ function App() {
   const recipeContextValue = {
     handleRecipeAdd,
     handleRecipeDelete,
-    handleRecipeSelect
+    handleRecipeSelect,
+    handleRecipeChange
   }
 
   function handleRecipeSelect(id) {
@@ -52,6 +53,18 @@ function App() {
     }
 
     setRecipes([...recipes, newRecipe])
+  }
+
+  function handleRecipeChange(id, recipe) {
+    // Copying the current recipes array
+    const newRecipes = [...recipes] 
+
+    // Get the index of the recipe that corresponds to the id
+    const index = newRecipes.findIndex(r => r.id === id)
+
+    // Swapping out the old recipe with the new one
+    newRecipes[index] = recipe
+    setRecipes(newRecipes)
   }
 
   function handleRecipeDelete(id) {
