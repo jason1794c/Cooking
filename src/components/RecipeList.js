@@ -6,12 +6,19 @@ export default function RecipeList({ recipes }) {
     const { handleRecipeAdd } = useContext(RecipeContext)
     const [search, setSearch] = useState('')
     const [filteredRecipes, setFilteredRecipes] = useState()
-    
+
     function handleSearch(event) {
         setSearch(event.target.value)
-        setFilteredRecipes(recipes.filter(recipe => {
-            return recipe.name.toLowerCase().includes(search.toLowerCase())
-        }))
+        if (search) {
+            setFilteredRecipes(recipes.filter(recipe => {
+                return recipe.name.toLowerCase().includes(search.toLowerCase())
+            }))
+        } else {
+            setFilteredRecipes([])
+        }
+
+        console.log(search)
+        console.log(filteredRecipes)
     }
 
     return (
@@ -20,8 +27,8 @@ export default function RecipeList({ recipes }) {
                 <label htmlFor="search">Search: </label>
                 <input 
                     type="text" 
-                    id="search" 
-                    value={search}
+                    id="search"
+                    value={search} 
                     placeholder='Search for a recipe' 
                     onChange={event => handleSearch(event)} />
             </div>

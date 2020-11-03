@@ -75,7 +75,6 @@ function App() {
     setRecipes(recipes.filter(recipe => recipe.id !== id));
   }
 
-
   return (
     <>
       <RecipeContext.Provider value={recipeContextValue}>
