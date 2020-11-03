@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import Recipe from './Recipe'
 import { RecipeContext } from './App'
 
@@ -6,19 +6,15 @@ export default function RecipeList({ recipes }) {
     const { handleRecipeAdd } = useContext(RecipeContext)
     const [search, setSearch] = useState('')
     const [filteredRecipes, setFilteredRecipes] = useState()
+    
+    useEffect(() => {
+        setFilteredRecipes(recipes.filter(recipe => {
+            return recipe.name.toLowerCase().includes(search.toLowerCase())
+        }))
+    }, [search, recipes])
 
     function handleSearch(event) {
         setSearch(event.target.value)
-        if (search) {
-            setFilteredRecipes(recipes.filter(recipe => {
-                return recipe.name.toLowerCase().includes(search.toLowerCase())
-            }))
-        } else {
-            setFilteredRecipes([])
-        }
-
-        console.log(search)
-        console.log(filteredRecipes)
     }
 
     return (
@@ -30,7 +26,7 @@ export default function RecipeList({ recipes }) {
                     id="search"
                     value={search} 
                     placeholder='Search for a recipe' 
-                    onChange={event => handleSearch(event)} />
+                    onChange={(event) => handleSearch(event)} />
             </div>
             <div className="recipe-list">
                 <div>
