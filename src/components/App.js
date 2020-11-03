@@ -43,6 +43,7 @@ function App() {
       servings: 1,
       cookTime: '',
       instructions: '',
+      person: '',
       ingredients: [
         {
           id: uuid(),

@@ -56,6 +56,18 @@ export default function RecipeEdit({ recipe }) {
                     value={recipe.name}
                     onChange={e => handleChange({ name: e.target.value })} />
                 <label 
+                    htmlFor="addedBy"
+                    className="recipe-edit__label">
+                    Added by
+                </label>
+                <input 
+                    type="text"
+                    name="addedBy"
+                    id="addedBy"
+                    className="recipe-edit__input"
+                    value={recipe.person}
+                    onChange={e => handleChange({ person: e.target.value })} />
+                <label 
                     htmlFor="cookTime"
                     className="recipe-edit__label">
                     Cook Time

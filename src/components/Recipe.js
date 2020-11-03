@@ -10,6 +10,7 @@ export default function Recipe(props) {
         cookTime,
         servings,
         instructions,
+        person,
         ingredients
     } = props
 
@@ -29,6 +30,10 @@ export default function Recipe(props) {
                         Delete
                     </button>
                 </div>
+            </div>
+            <div className="recipe__row">
+                <span className="recipe__label">Added by: </span>
+                <span className="recipe__value">{person}</span>
             </div>
             <div className="recipe__row">
                 <span className="recipe__label">Cook Time:</span>
