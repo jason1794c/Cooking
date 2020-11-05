@@ -12,6 +12,19 @@ function App() {
   const [recipes, setRecipes] = useState([])
   const selectedRecipe = recipes.find(recipe => recipe.id === selectedRecipeId)
 
+  /* Using Express */
+  const [apiResponse, setAPIResponse] = useState('')
+
+  function callAPI() {
+      fetch('http://localhost:9000/testAPI')
+        .then(res => res.text())
+        .then(res => setAPIResponse(res))
+        .catch(err => err)
+  }
+
+  useEffect(callAPI)
+
+  /* Local Storage 
   // Loading recipes from local storage
   useEffect(() => {
     const recipeJSON = localStorage.getItem(LOCAL_STORAGE_KEY);
@@ -24,6 +37,7 @@ function App() {
   useEffect(() => {
     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(recipes))
   }, [recipes])
+  */
 
   const recipeContextValue = {
     handleRecipeAdd,
@@ -82,6 +96,7 @@ function App() {
         <RecipeList recipes={recipes} />
         {selectedRecipe && <RecipeEdit recipe={selectedRecipe} />}
       </RecipeContext.Provider>
+      <p>{apiResponse}</p>
     </>
   )
 };
